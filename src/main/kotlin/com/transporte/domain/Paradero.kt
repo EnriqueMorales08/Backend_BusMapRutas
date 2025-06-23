@@ -1,10 +1,12 @@
 package com.transporte.domain
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 import jakarta.persistence.*
 
 @Entity
 @Table(name = "paradero")
+@JsonIgnoreProperties(value = ["ruta"])
 data class Paradero(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +18,6 @@ data class Paradero(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ruta_id")
-    @JsonIgnore  // evita que la respuesta JSON devuelva la ruta dentro del paradero
+    @JsonIgnoreProperties("paraderos", "empresa") // evita bucles
     val ruta: Ruta
 )

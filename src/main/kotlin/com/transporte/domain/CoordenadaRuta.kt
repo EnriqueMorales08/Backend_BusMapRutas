@@ -1,4 +1,5 @@
 package com.transporte.domain
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 import jakarta.persistence.*
 
@@ -14,5 +15,6 @@ data class CoordenadaRuta(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ruta_id")
+    @JsonIgnore
     val ruta: Ruta
 )
