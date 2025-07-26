@@ -1,6 +1,6 @@
 package com.transporte.domain.ports.output
 
-import com.transporte.domain.Usuario
+import com.transporte.domain.model.Usuario
 
 interface UsuarioRepository {
     fun save(usuario: Usuario): Usuario

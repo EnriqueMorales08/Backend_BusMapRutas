@@ -1,8 +1,8 @@
 package com.transporte.infrastructure.controller
 
-import com.transporte.application.ParaderoService
-import com.transporte.domain.Paradero
-import com.transporte.infrastructure.dto.ParaderoDto
+import com.transporte.application.service.ParaderoService
+import com.transporte.infrastructure.persistence.entity.routes.Paradero
+import com.transporte.application.dto.ParaderoDto
 
 import org.springframework.web.bind.annotation.*
 

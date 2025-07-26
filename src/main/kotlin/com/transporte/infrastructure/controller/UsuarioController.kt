@@ -1,6 +1,6 @@
 package com.transporte.controller
 
-import com.transporte.application.UsuarioService
+import com.transporte.application.service.UsuarioService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile

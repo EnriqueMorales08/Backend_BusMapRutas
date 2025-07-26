@@ -1,10 +1,10 @@
 package com.transporte.infrastructure.controller
 
-import com.transporte.domain.Empresa
-import com.transporte.domain.Ruta
-import com.transporte.infrastructure.repository.EmpresaRepository
-import com.transporte.infrastructure.dto.EmpresaDto
-import com.transporte.infrastructure.dto.RutaDto
+import com.transporte.infrastructure.persistence.entity.routes.Empresa
+import com.transporte.infrastructure.persistence.entity.routes.Ruta
+import com.transporte.domain.ports.output.EmpresaRepository
+import com.transporte.application.dto.EmpresaDto
+import com.transporte.application.dto.RutaDto
 
 import org.springframework.web.bind.annotation.*
 

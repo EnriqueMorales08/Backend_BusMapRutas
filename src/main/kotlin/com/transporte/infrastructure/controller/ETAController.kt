@@ -1,6 +1,6 @@
 package com.transporte.infrastructure.controller
 
-import com.transporte.service.ETAService
+import com.transporte.application.service.ETAService
 import org.springframework.web.bind.annotation.*
 
 @RestController

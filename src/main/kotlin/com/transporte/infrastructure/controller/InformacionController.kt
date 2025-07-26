@@ -1,7 +1,7 @@
 package com.transporte.infrastructure.controller
 
-import com.transporte.application.InformacionService
-import com.transporte.infrastructure.dto.InformacionDto
+import com.transporte.application.service.InformacionService
+import com.transporte.application.dto.InformacionDto
 import org.springframework.web.bind.annotation.*
 
 @RestController

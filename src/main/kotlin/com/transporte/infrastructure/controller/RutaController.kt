@@ -1,8 +1,8 @@
 package com.transporte.infrastructure.controller
 
-import com.transporte.application.RutaService
-import com.transporte.domain.Ruta
-import com.transporte.infrastructure.dto.CoordenadaDto
+import com.transporte.application.service.RutaService
+import com.transporte.infrastructure.persistence.entity.routes.Ruta
+import com.transporte.application.dto.CoordenadaDto
 
 import org.springframework.web.bind.annotation.*
 
