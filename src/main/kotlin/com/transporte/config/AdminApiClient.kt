@@ -2,50 +2,60 @@ package com.transporte.config
 
 import com.transporte.application.dto.Usuario
 import org.springframework.core.ParameterizedTypeReference
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpMethod
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
+import org.springframework.http.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
-
 
 @Service
 class AdminApiClient {
 
     private val restTemplate = RestTemplate()
-    private val backendAdminBaseUrl = "http://137.184.200.155:8080/api"
-    private val adminBaseUrl = "http://137.184.200.155:8080/api/usuarios"
+    private val baseUrl = "http://137.184.200.155:8080/api"
 
     fun obtenerUsuarios(estado: Boolean?): List<Usuario> {
         val uriBuilder = UriComponentsBuilder
-            .fromHttpUrl("$backendAdminBaseUrl/usuarios")
+            .fromHttpUrl("$baseUrl/usuarios")
 
-        if (estado != null) {
-            uriBuilder.queryParam("estado", estado)
+        estado?.let {
+            uriBuilder.queryParam("estado", it)
         }
 
         val uri = uriBuilder.toUriString()
 
-        val response: ResponseEntity<List<Usuario>> = restTemplate.exchange(
-            uri,
-            HttpMethod.GET,
-            null,
-            object : ParameterizedTypeReference<List<Usuario>>() {}
-        )
-
-        return response.body ?: emptyList()
+        return try {
+            val response: ResponseEntity<List<Usuario>> = restTemplate.exchange(
+                uri,
+                HttpMethod.GET,
+                null,
+                object : ParameterizedTypeReference<List<Usuario>>() {}
+            )
+            response.body ?: emptyList()
+        } catch (ex: Exception) {
+            println("Error al obtener usuarios: ${ex.message}")
+            emptyList()
+        }
     }
 
     fun crearUsuarioEnAdmin(usuario: Usuario): String {
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.APPLICATION_JSON
-        val request = HttpEntity(usuario, headers)
+        val request = HttpEntity(usuario, createJsonHeaders())
 
-        val response = restTemplate.postForEntity(adminBaseUrl, request, Map::class.java)
+        return try {
+            val response = restTemplate.postForEntity(
+                "$baseUrl/usuarios",
+                request,
+                Map::class.java
+            )
+            response.body?.get("mensaje")?.toString() ?: "Sin mensaje"
+        } catch (ex: Exception) {
+            println("Error al crear usuario: ${ex.message}")
+            "Error al crear usuario"
+        }
+    }
 
-        return response.body?.get("mensaje").toString()
+    private fun createJsonHeaders(): HttpHeaders {
+        return HttpHeaders().apply {
+            contentType = MediaType.APPLICATION_JSON
+        }
     }
 }
