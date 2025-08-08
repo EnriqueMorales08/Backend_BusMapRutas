@@ -15,13 +15,12 @@ class ParaderoController(
 ) {
 
    @GetMapping("/cercano")
-fun obtenerParaderoMasCercano(
-    @RequestParam lat: Double,
-    @RequestParam lng: Double,
-    @RequestParam rutaId: Long
-): ParaderoDto {
-    val p = paraderoService.obtenerParaderoMasCercano(lat, lng, rutaId)
-    return ParaderoDto(p.id, p.nombre, p.latitud, p.longitud)
-}
-
+    fun obtenerParaderoMasCercano(
+        @RequestParam lat: Double,
+        @RequestParam lng: Double,
+        @RequestParam rutaId: Long
+    ): ParaderoDto {
+        val p = paraderoService.obtenerParaderoMasCercano(lat, lng, rutaId)
+        return ParaderoDto(p.id, p.nombre, p.latitud, p.longitud)
+    }
 }

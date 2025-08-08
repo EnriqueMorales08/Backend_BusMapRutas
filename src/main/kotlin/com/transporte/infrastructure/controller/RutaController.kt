@@ -18,12 +18,7 @@ class RutaController(
     }
 
     @GetMapping
-fun listarRutas(): List<Ruta> {
-    return rutaService.listarTodasLasRutas()
+    fun listarRutas(): List<Ruta> {
+        return rutaService.listarTodasLasRutas()
+    }
 }
-
-}
-
-
-
-

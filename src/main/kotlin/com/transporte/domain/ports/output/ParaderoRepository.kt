@@ -18,5 +18,5 @@ interface ParaderoRepository : JpaRepository <Paradero, Long> {
         @Param("lng") lng: Double,
         @Param("rutaId") rutaId: Long
     ): List<Paradero>
-
+    fun deleteByRutaIdIn(rutaIds: List<Long>)
 }

@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 
 interface CoordenadaRutaRepository : JpaRepository<CoordenadaRuta, Long> {
+    fun deleteByRutaId(rutaId: Long)
     fun findByRutaIdOrderByOrdenAsc(rutaId: Long): List<CoordenadaRuta>
 }
